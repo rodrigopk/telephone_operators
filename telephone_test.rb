@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
 require_relative 'telephone'
@@ -29,6 +28,12 @@ class TelephoneTest < Minitest::Test
   end
 
   def test_find_smallest_rate_from_operators
+    number = '1111111111'
+    
+    assert_equal 0.9, @tel.get_smaller_price(number)
+  end
+
+  def test_use_the_longest_prefix
     number = '4673212345'
     
     assert_equal 1.0, @tel.get_smaller_price(number)
