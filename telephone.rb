@@ -28,9 +28,8 @@ end
 class Telephone
   attr_accessor :operators
 
-  def initialize(file_path)
-    @operators = []
-    from_csv(file_path)
+  def initialize(operators)
+    @operators = operators
   end
 
   def get_smaller_price(number)
@@ -41,7 +40,8 @@ class Telephone
       .min_by{ |k| k.first[1]}
   end
 
-  def from_csv(file_path)
+  def Telephone.from_csv(file_path)
+    operators = []
     CSV.foreach(file_path) do |row|
       price_list = {}
       name = row.delete_at(0)
@@ -49,8 +49,9 @@ class Telephone
         parsed = JSON.parse(row.delete_at(0))
         price_list.merge!(Hash[parsed.each_slice(2).to_a])
       end
-      @operators << Operator.new(name,price_list)
+      operators << Operator.new(name,price_list)
     end
+    Telephone.new(operators)
   end
 
 end

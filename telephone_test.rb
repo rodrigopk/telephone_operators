@@ -30,19 +30,19 @@ class TelephoneTest < Minitest::Test
   def test_find_smallest_rate_from_operators
     number = '1111111111'
     
-    assert_equal 0.9, @tel.get_smaller_price(number)
+    assert_equal ({"A" => 0.9}), @tel.get_smaller_price(number)
   end
 
   def test_use_the_longest_prefix
     number = '4673212345'
     
-    assert_equal 1.0, @tel.get_smaller_price(number)
+    assert_equal ({"B" => 1.0}), @tel.get_smaller_price(number)
   end
 
   def test_find_price_that_doesnt_exists_in_one_list
     number = '4473212345'
     
-    assert_equal 0.5, @tel.get_smaller_price(number)
+    assert_equal ({"B" => 0.5}), @tel.get_smaller_price(number)
   end
 
 end
