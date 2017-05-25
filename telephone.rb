@@ -42,9 +42,8 @@ class Telephone
   def Telephone.from_csv(file_path)
     operators = []
     CSV.foreach(file_path) do |row|
-      price_list = {}
       name = row.delete_at(0)
-      price_list.merge!(Hash[row.each_slice(2).to_a])
+      price_list = Hash[row.each_slice(2).to_a]
       operators << Operator.new(name,price_list)
     end
     Telephone.new(operators)
