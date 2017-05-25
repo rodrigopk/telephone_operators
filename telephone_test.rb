@@ -5,7 +5,7 @@ require_relative 'telephone'
 class TelephoneTest < Minitest::Test
 
   def setup
-    op_a = Operator.new("A",{
+    @op_a = Operator.new("A",{
                           "1" =>  0.9, 
                           "268" => 5.1, 
                           "46" => 0.17, 
@@ -24,7 +24,12 @@ class TelephoneTest < Minitest::Test
                             "48" => 1.2
                           })
   
-  @tel = Telephone.new([op_a,op_b])
+  @tel = Telephone.new([@op_a,op_b])
+  end
+
+  def test_rate_for_number
+    number = '4673212345'
+    assert_equal ({"A" => 1.1}), @op_a.rate_for_number(number)
   end
 
   def test_find_smallest_rate_from_operators
@@ -39,10 +44,17 @@ class TelephoneTest < Minitest::Test
     assert_equal ({"B" => 1.0}), @tel.get_smaller_price(number)
   end
 
-  def test_find_price_that_doesnt_exists_in_one_list
+  def test_find_price_when_doesnt_exists_in_one_list
     number = '4473212345'
     
     assert_equal ({"B" => 0.5}), @tel.get_smaller_price(number)
+  end
+
+  def test_telephone_from_csv
+    tel_2 = Telephone.from_csv('sample_data.csv')
+
+    assert tel_2 != nil
+    assert tel_2.operators != nil
   end
 
 end

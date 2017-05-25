@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 require_relative 'telephone'
 
-#'C:\Users\rodrigo.vasconcelos\data.csv'
-# '4673212345'
 number = ARGV[0]
 tel = Telephone.from_csv(ARGV[1])
 lowest_hash = tel.get_smaller_price(number)
