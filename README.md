@@ -9,8 +9,8 @@ proper permission. Ex.:
 
 		./telephone_exercise.rb 4673212345 sample_data.csv
 
-The input data for the operators price lists is read from a csv file. I provided a sample
-one using the data from the exercise description.
+The input data for the operators price lists is read from a csv file, so it´s easy to add 
+new operators if needed. I provided a sample file using the data from the exercise description.
 
 The main code of the exercise can be found on the ```telephone.rb``` file.
 I chose to keep it all classes in one file for simplicity, and because they 

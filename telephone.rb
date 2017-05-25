@@ -1,5 +1,4 @@
 require 'csv'
-require 'json'
 
 class Symbol
   def with(*args, &block)
