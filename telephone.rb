@@ -45,10 +45,7 @@ class Telephone
     CSV.foreach(file_path) do |row|
       price_list = {}
       name = row.delete_at(0)
-      while (!row.empty?) do
-        parsed = JSON.parse(row.delete_at(0))
-        price_list.merge!(Hash[parsed.each_slice(2).to_a])
-      end
+      price_list.merge!(Hash[row.each_slice(2).to_a])
       operators << Operator.new(name,price_list)
     end
     Telephone.new(operators)
