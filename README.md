@@ -4,7 +4,8 @@ To run the exercise, you can use the following command:
 		
 		ruby telephone_exercise.rb [number] [csv_file_path]
 
-This script is also marked as executable, so you can run it directly after giving it the propper permission. Ex.:
+This script is also marked as executable, so you can run it directly after giving it the 
+proper permission. Ex.:
 
 		./telephone_exercise.rb 4673212345 sample_data.csv
 

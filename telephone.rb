@@ -33,7 +33,6 @@ class Telephone
   end
 
   def get_smaller_price(number)
-
     @operators      
       .map(&:rate_for_number.with(number))
       .compact
