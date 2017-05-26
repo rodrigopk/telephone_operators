@@ -1,6 +1,8 @@
 require 'csv'
 
 class Symbol
+  # extending symbol class 
+  # convenience to pass parameters to the map method
   def with(*args, &block)
     ->(caller, *rest) { caller.send(self, *rest, *args, &block) }
   end
@@ -16,12 +18,14 @@ class Operator
 
   def rate_for_number(number)
     match_rate = nil
-    @price_list.each do |prefix,rate|
-      match_rate = rate if number.slice(0,prefix.length) == prefix
+    @price_list.reverse_each do |prefix,rate|
+      if number.slice(0,prefix.length) == prefix
+        match_rate = rate
+        break
+      end
     end
     match_rate.nil? ? nil : {self.name => match_rate}
   end
-
 end
 
 class Telephone
